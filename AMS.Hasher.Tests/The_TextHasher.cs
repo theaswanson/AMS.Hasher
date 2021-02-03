@@ -75,4 +75,39 @@ namespace The_TextHasher
             Assert.That(hash, Is.EqualTo(StringsToHash.AllCharacters.MD4));
         }
     }
+
+    public class MD5
+    {
+        [SetUp]
+        public void Setup()
+        {
+        }
+
+        [Test]
+        public void Given_null_throws_exception()
+        {
+            var textHasher = new TextHasher();
+            var exception = Assert.Throws<ArgumentException>(delegate
+            {
+                textHasher.MD5(null);
+            });
+            Assert.That(exception.Message, Is.EqualTo("Input cannot be null."));
+        }
+
+        [Test]
+        public void Given_string_password_returns_correct_hash()
+        {
+            var textHasher = new TextHasher();
+            var hash = textHasher.MD5(StringsToHash.Password.Input);
+            Assert.That(hash, Is.EqualTo(StringsToHash.Password.MD5));
+        }
+
+        [Test]
+        public void Given_string_with_all_characters_returns_correct_hash()
+        {
+            var textHasher = new TextHasher();
+            var hash = textHasher.MD5(StringsToHash.AllCharacters.Input);
+            Assert.That(hash, Is.EqualTo(StringsToHash.AllCharacters.MD5));
+        }
+    }
 }

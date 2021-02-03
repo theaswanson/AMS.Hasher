@@ -10,8 +10,7 @@ namespace AMS.Hasher
         public string Base64(string input)
         {
             CheckInput(input);
-            var bytes = Encoding.UTF8.GetBytes(input);
-            return Convert.ToBase64String(bytes);
+            return Convert.ToBase64String(input.ToBytes());
         }
 
         public string MD4(string input)
@@ -54,6 +53,14 @@ namespace AMS.Hasher
             // return hex encoded string
             byte[] outBytes = new[] { a, b, c, d }.SelectMany(BitConverter.GetBytes).ToArray();
             return BitConverter.ToString(outBytes).Replace("-", "").ToLower();
+        }
+
+        public string MD5(string input)
+        {
+            CheckInput(input);
+            var hasher = System.Security.Cryptography.MD5.Create();
+            var hash = hasher.ComputeHash(input.ToBytes());
+            return hash.ToHashString();
         }
 
         private void CheckInput(string input)
