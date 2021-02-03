@@ -17,5 +17,7 @@ namespace AMS.Hasher
         string SHA256(string input);
 
         string SHA512(string input);
+
+        string ROT13(string input);
     }
 }
