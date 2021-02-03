@@ -37,7 +37,7 @@ namespace The_TextHasher
         {
             var textHasher = new TextHasher();
             var hash = textHasher.Base64(StringsToHash.AllCharacters.Input);
-            Assert.That(hash, Is.EqualTo("QUJDREVGR0hJSktMTU5PUFFSU1RVVldYWVphYmNkZWZnaGlqa2xtbm9wcXJzdHV2d3h5ejEyMzQ1Njc4OTAhQCMkJV4mKigpLT1fK2B+e31bXVx8OjsnIjw+LC4vPw=="));
+            Assert.That(hash, Is.EqualTo(StringsToHash.AllCharacters.Base64));
         }
     }
 }
