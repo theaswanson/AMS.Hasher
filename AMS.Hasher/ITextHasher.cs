@@ -13,5 +13,7 @@ namespace AMS.Hasher
         string MD5(string input);
 
         string SHA1(string input);
+
+        string SHA256(string input);
     }
 }

@@ -67,6 +67,12 @@ namespace AMS.Hasher
             return input.GetHash(System.Security.Cryptography.SHA1.Create());
         }
 
+        public string SHA256(string input)
+        {
+            CheckInput(input);
+            return input.GetHash(System.Security.Cryptography.SHA256.Create());
+        }
+
         private void CheckInput(string input)
         {
             if (input is null)
