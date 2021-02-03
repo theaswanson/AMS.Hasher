@@ -7,5 +7,6 @@ namespace AMS.Hasher
     public interface ITextHasher
     {
         string Base64(string input);
+        string MD4(string input);
     }
 }
