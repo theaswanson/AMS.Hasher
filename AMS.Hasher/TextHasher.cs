@@ -58,9 +58,13 @@ namespace AMS.Hasher
         public string MD5(string input)
         {
             CheckInput(input);
-            var hasher = System.Security.Cryptography.MD5.Create();
-            var hash = hasher.ComputeHash(input.ToBytes());
-            return hash.ToHashString();
+            return input.GetHash(System.Security.Cryptography.MD5.Create());
+        }
+
+        public string SHA1(string input)
+        {
+            CheckInput(input);
+            return input.GetHash(System.Security.Cryptography.SHA1.Create());
         }
 
         private void CheckInput(string input)
