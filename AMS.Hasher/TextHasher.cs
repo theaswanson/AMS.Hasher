@@ -88,18 +88,18 @@ namespace AMS.Hasher
             }
         }
 
-        public string GetHash(string input, HashAlgorithm algorithm)
+        private string GetHash(string input, HashAlgorithm algorithm)
         {
             var hash = algorithm.ComputeHash(ToBytes(input));
             return ToHashString(hash);
         }
 
-        public byte[] ToBytes(string input)
+        private byte[] ToBytes(string input)
         {
             return Encoding.UTF8.GetBytes(input);
         }
 
-        public string ToHashString(byte[] bytes)
+        private string ToHashString(byte[] bytes)
         {
             var stringBuilder = new StringBuilder();
             foreach (var aByte in bytes)
