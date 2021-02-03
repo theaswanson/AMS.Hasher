@@ -180,4 +180,39 @@ namespace The_TextHasher
             Assert.That(hash, Is.EqualTo(StringsToHash.AllCharacters.SHA256));
         }
     }
+
+    public class SHA512
+    {
+        [SetUp]
+        public void Setup()
+        {
+        }
+
+        [Test]
+        public void Given_null_throws_exception()
+        {
+            var textHasher = new TextHasher();
+            var exception = Assert.Throws<ArgumentException>(delegate
+            {
+                textHasher.SHA512(null);
+            });
+            Assert.That(exception.Message, Is.EqualTo("Input cannot be null."));
+        }
+
+        [Test]
+        public void Given_string_password_returns_correct_hash()
+        {
+            var textHasher = new TextHasher();
+            var hash = textHasher.SHA512(StringsToHash.Password.Input);
+            Assert.That(hash, Is.EqualTo(StringsToHash.Password.SHA512));
+        }
+
+        [Test]
+        public void Given_string_with_all_characters_returns_correct_hash()
+        {
+            var textHasher = new TextHasher();
+            var hash = textHasher.SHA512(StringsToHash.AllCharacters.Input);
+            Assert.That(hash, Is.EqualTo(StringsToHash.AllCharacters.SHA512));
+        }
+    }
 }

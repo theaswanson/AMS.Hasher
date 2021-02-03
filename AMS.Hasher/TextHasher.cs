@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace AMS.Hasher
@@ -10,7 +11,7 @@ namespace AMS.Hasher
         public string Base64(string input)
         {
             CheckInput(input);
-            return Convert.ToBase64String(input.ToBytes());
+            return Convert.ToBase64String(ToBytes(input));
         }
 
         public string MD4(string input)
@@ -58,19 +59,25 @@ namespace AMS.Hasher
         public string MD5(string input)
         {
             CheckInput(input);
-            return input.GetHash(System.Security.Cryptography.MD5.Create());
+            return GetHash(input, System.Security.Cryptography.MD5.Create());
         }
 
         public string SHA1(string input)
         {
             CheckInput(input);
-            return input.GetHash(System.Security.Cryptography.SHA1.Create());
+            return GetHash(input, System.Security.Cryptography.SHA1.Create());
         }
 
         public string SHA256(string input)
         {
             CheckInput(input);
-            return input.GetHash(System.Security.Cryptography.SHA256.Create());
+            return GetHash(input, System.Security.Cryptography.SHA256.Create());
+        }
+
+        public string SHA512(string input)
+        {
+            CheckInput(input);
+            return GetHash(input, System.Security.Cryptography.SHA512.Create());
         }
 
         private void CheckInput(string input)
@@ -79,6 +86,27 @@ namespace AMS.Hasher
             {
                 throw new ArgumentException("Input cannot be null.");
             }
+        }
+
+        public string GetHash(string input, HashAlgorithm algorithm)
+        {
+            var hash = algorithm.ComputeHash(ToBytes(input));
+            return ToHashString(hash);
+        }
+
+        public byte[] ToBytes(string input)
+        {
+            return Encoding.UTF8.GetBytes(input);
+        }
+
+        public string ToHashString(byte[] bytes)
+        {
+            var stringBuilder = new StringBuilder();
+            foreach (var aByte in bytes)
+            {
+                stringBuilder.Append(aByte.ToString("x2"));
+            }
+            return stringBuilder.ToString();
         }
     }
 }
