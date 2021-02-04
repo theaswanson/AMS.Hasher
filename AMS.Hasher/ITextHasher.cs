@@ -19,5 +19,7 @@ namespace AMS.Hasher
         string SHA512(string input);
 
         string ROT13(string input);
+
+        string Whirlpool(string input);
     }
 }

@@ -102,6 +102,18 @@ namespace AMS.Hasher
             return result.ToString();
         }
 
+        public string Whirlpool(string input)
+        {
+            CheckInput(input);
+            var digest = new Org.BouncyCastle.Crypto.Digests.WhirlpoolDigest();
+            digest.Reset();
+            var inputBytes = ToBytes(input);
+            digest.BlockUpdate(inputBytes, 0, inputBytes.Length);
+            var hashBytes = new byte[digest.GetDigestSize()];
+            digest.DoFinal(hashBytes, 0);
+            return ToHashString(hashBytes);
+        }
+
         private void CheckInput(string input)
         {
             if (input is null)
