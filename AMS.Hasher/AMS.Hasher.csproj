@@ -4,7 +4,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <Authors>Adam Swanson</Authors>
     <Company>Layer 7</Company>
-    <Version>1.0.0</Version>
+    <Version>1.1.0</Version>
     <PackageId>AMS.Hasher</PackageId>
     <Product>AMS.Hasher</Product>
     <Description>Easily hash strings with the following algorithms: Base64, MD4, MD5, SHA1, SHA256, SHA512, ROT13, and Whirlpool.</Description>
