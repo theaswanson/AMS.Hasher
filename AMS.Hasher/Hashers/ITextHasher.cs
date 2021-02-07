@@ -2,8 +2,12 @@
 
 namespace AMS.Hasher.Hashers
 {
-    public interface ITextHasher<T> where T : IHashType
+    public interface ITextHasher
     {
         string Hash(string input);
+    }
+
+    public interface ITextHasher<T> : ITextHasher where T : IHashType
+    {
     }
 }
